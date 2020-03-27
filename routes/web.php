@@ -25,3 +25,7 @@ Route::get('/edit/{id}', 'PostController@edit')->name('edit');
 Route::post('/update/{id}', 'PostController@update')->name('update');
 Route::get('/post/{id}', 'PostController@show')->name('show');
 // Route::post('books/delete/{id}','AdminControl@destroy')->name('books.delete');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
