@@ -11,7 +11,15 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+   public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+   
+   
+   
+     public function index()
     {
         //
        $posts  = post::latest()->paginate(5);
@@ -54,7 +62,7 @@ class PostController extends Controller
                     $image->move(public_path().'/images/', $img_name);  
                     $data[] = $img_name;  
                     
-                    
+    
                     //   print_r($img_name);exit;
     
                 }
