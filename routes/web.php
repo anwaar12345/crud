@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PostController@index')->name('home');
+Route::get('/', 'PostController@index')->name('posts')->middleware('auth');
 
 Route::get('/create', 'PostController@create')->name('create');
 

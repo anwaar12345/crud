@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\post;
+
+use Auth;
 class PostController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
    public function __construct()
     {
         $this->middleware('auth');
@@ -22,7 +26,7 @@ class PostController extends Controller
      public function index()
     {
         //
-       $posts  = post::latest()->paginate(5);
+       $posts  = post::latest()->where('uid',Auth::user()->id)->paginate(5);
         return view('posts',compact('posts'));
     }
 
@@ -47,6 +51,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+//        dd($request);
          $request->validate([
             'post' => 'required',
             'createdby' => 'required',
@@ -82,14 +87,15 @@ class PostController extends Controller
 $data = [
         'post' => $request->post, 
         'createdby' => $request->createdby,
-        'images' => $img        
+        'images' => $img,
+        'uid' => $request->uid        
     ];
 
 
 
 
      post::create($data);    
-      return redirect(route('home'))->with("message","Post Created Successfully");
+      return redirect(route('posts'))->with("message","Post Created Successfully");
     }
 
     /**
@@ -175,7 +181,7 @@ $data = [
             }  
             
         
-        return redirect()->route('home')->with("message","Post updated Successfully");
+        return redirect()->route('posts')->with("message","Post updated Successfully");
     }
 
     /**
@@ -190,7 +196,7 @@ $data = [
          $post = post::find($id);
         $post->delete();
 
-        return redirect()->route('home')
+        return redirect()->route('posts')
                             ->with('message', 'post Deleted Successfully!');
     }
 }

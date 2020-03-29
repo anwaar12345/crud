@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class post extends Model
 {
     //
-protected $fillable =['post', 'createdby', 'images'];
+protected $fillable =['post','uid', 'createdby', 'images'];
 
 
 }

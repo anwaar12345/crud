@@ -16,6 +16,7 @@
     <td>ID</td>
     <td>Post Content</td>
     <td>created By</td>
+    <td>Author ID</td>
     <td>Post Pictures</td>
     <td>Actions</td>
         </tr>
@@ -33,6 +34,7 @@
 <td>
 {{ $post->createdby }}
 </td>
+<td> {{ $post->uid }} </td>
 <td>
 
 @foreach(json_decode($post->images,true) as $image)

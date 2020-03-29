@@ -20,7 +20,7 @@
 
                         <form id="login-form" class="form" action="{{ route('create.post') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                         
+                        <input type="hidden" name="uid" value="{{ Auth::user()->id }}">
                             <div class="form-group">
                                 <label  class="text-info">Post:</label><br>
                                <textarea name="post" cols="30" rows="5" class="form-control" style="resize:none;"></textarea>
